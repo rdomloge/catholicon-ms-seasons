@@ -12,7 +12,7 @@ import com.domloge.catholicon.ms.common.CacheControlFilter;
 public class RestConfiguration {
 
     @Bean
-    public FilterRegistrationBean cacheControlFilter() {
+    public FilterRegistrationBean seasonsCacheControlFilter() {
         FilterRegistrationBean registration = new FilterRegistrationBean();
         Filter filter = new CacheControlFilter();
         registration.setFilter(filter);
