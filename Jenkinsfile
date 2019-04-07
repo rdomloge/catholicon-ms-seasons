@@ -72,6 +72,7 @@ pipeline {
 	    			sh '''
 	    				docker run --rm -d --network="cicd" --name catholicon-ms-seasons-integration-test -p 9091:8080 \
 	    				rdomloge/catholicon-ms-seasons:$BUILD_NUMBER
+	    				docker network connect bridge catholicon-ms-seasons-integration-test
 					'''
 					
 					CONTAINER_IP = sh(script: "docker container inspect -f '{{ .NetworkSettings.Networks.cicd.IPAddress }}' catholicon-ms-seasons-integration-test", returnStdout:	true).trim()
