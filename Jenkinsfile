@@ -6,7 +6,7 @@ pipeline {
     
     
     environment {
-		registry = "rdomloge/catholicon-me-seasons"
+		registry = "rdomloge/catholicon-ms-seasons"
 		registryCredential = 'rdomloge'
 	}
 
