@@ -75,6 +75,15 @@
 			</plugin>
 		</plugins>
 	</build>
-
-
+	<distributionManagement>
+	   <repository>
+	      <id>nexus-releases</id>
+	      <url>http://10.0.0.23:8081/repository/maven-releases/</url>
+	   </repository>
+	</distributionManagement>
+	<scm>
+	   <connection>scm:git:git@github.com:rdomloge/catholicon-ms-seasons.git</connection>
+	   <url>scm:git:git@github.com:rdomloge/catholicon-ms-seasons.git</url>
+	   <developerConnection>scm:git:git@github.com:rdomloge/catholicon-ms-seasons.git</developerConnection>
+	</scm>
 </project>
