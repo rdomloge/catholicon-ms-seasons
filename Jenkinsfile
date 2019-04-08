@@ -72,7 +72,7 @@ pipeline {
 	    			try{
 	    				sh 'docker kill catholicon-ms-seasons-integration-test'
     				} catch(err) {
-    					echo 'Wasn''t running previous instance'      
+    					echo "Wasn't running previous instance"      
     				}
 	    			sh '''
 	    				docker run --rm -d --network="cicd" --name catholicon-ms-seasons-integration-test -p 9091:8080 \
