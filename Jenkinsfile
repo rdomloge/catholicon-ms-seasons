@@ -69,6 +69,11 @@ pipeline {
     	    steps{
     			script{
 	    			// Start the container to run the integration tests against
+	    			try{
+	    				sh 'docker kill catholicon-ms-seasons-integration-test'
+    				} catch(err) {
+    					echo 'Wasn''t running previous instance'      
+    				}
 	    			sh '''
 	    				docker run --rm -d --network="cicd" --name catholicon-ms-seasons-integration-test -p 9091:8080 \
 	    				rdomloge/catholicon-ms-seasons:$BUILD_NUMBER
@@ -155,8 +160,18 @@ pipeline {
 		    steps {
 		        script {
 		        	echo "Deploying PROD build tagged '$BUILD_NUMBER'"
-		            sh 'docker kill catholicon-ms-seasons || true'
-		            sh "docker run -d --name catholicon-ms-seasons -p 8081:8080 localhost:5000/rdomloge/catholicon-ms-seasons:$BUILD_NUMBER"
+		        	try {
+			            sh 'docker kill catholicon-ms-seasons'
+		        	} catch(err) {
+		        		echo 'Failed to stop prod'      
+		        	}
+		        	
+		        	try {
+		        	    sh 'docker rm catholicon-ms-seasons'
+		        	} catch(err) {
+						echo 'Failed to remove prod'
+		        	}
+		            sh "docker run -d --name catholicon-ms-seasons -p 8080:8080 localhost:5000/rdomloge/catholicon-ms-seasons:$BUILD_NUMBER"
 		        }
 		    }
 		}
