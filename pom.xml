@@ -9,7 +9,7 @@
 	</parent>
 	<groupId>com.domloge.catholicon</groupId>
 	<artifactId>catholicon-ms-seasons</artifactId>
-	<version>0.0.59</version>
+	<version>0.0.60-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>catholicon-ms-seasons</name>
 
@@ -84,6 +84,6 @@
 	   <connection>scm:git:git@github.com:rdomloge/catholicon-ms-seasons.git</connection>
 	   <url>scm:git:git@github.com:rdomloge/catholicon-ms-seasons.git</url>
 	   <developerConnection>scm:git:git@github.com:rdomloge/catholicon-ms-seasons.git</developerConnection>
-	  <tag>catholicon-ms-seasons-0.0.59</tag>
+	  <tag>HEAD</tag>
   </scm>
 </project>
