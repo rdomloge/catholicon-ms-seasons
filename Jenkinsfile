@@ -43,7 +43,7 @@ pipeline {
 	    		script {
 		        	def workspace = env.WORKSPACE
         			echo "workspace directory is ${workspace}"
-	        		IMAGE = docker.build(registry + ":$BUILD_NUMBER")
+	        		IMAGE = docker.build(registry + ":latest")
 	        	}
 	      	}
 	    }
@@ -76,7 +76,7 @@ pipeline {
     				}
 	    			sh '''
 	    				docker run --rm -d --network="cicd" --name catholicon-ms-seasons-integration-test -p 9091:8080 \
-	    				rdomloge/catholicon-ms-seasons:$BUILD_NUMBER
+	    				rdomloge/catholicon-ms-seasons
 	    				docker network connect catholicon catholicon-ms-seasons-integration-test
 					'''
 					
@@ -172,7 +172,7 @@ pipeline {
 		        	} catch(err) {
 						echo 'Failed to remove prod'
 		        	}
-		            sh "docker run -d --network=catholicon --name catholicon-ms-seasons -p 81:8080 localhost:5000/rdomloge/catholicon-ms-seasons:$BUILD_NUMBER"
+		            sh "docker run -d --network=catholicon --name catholicon-ms-seasons -p 81:8080 localhost:5000/rdomloge/catholicon-ms-seasons"
 		        }
 		    }
 		}
