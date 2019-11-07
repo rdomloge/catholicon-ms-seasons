@@ -1,0 +1,7 @@
+FROM openjdk:8-jdk-alpine
+
+COPY target/catholicon-ms-seasons.jar catholicon-ms-seasons.jar
+
+EXPOSE 8080
+
+ENTRYPOINT ["/usr/bin/java", "-jar", "catholicon-ms-seasons.jar"]
