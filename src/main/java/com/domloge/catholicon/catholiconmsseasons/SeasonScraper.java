@@ -1,9 +1,12 @@
 package com.domloge.catholicon.catholiconmsseasons;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -22,6 +25,9 @@ public class SeasonScraper {
 	@Autowired
 	private Loader loader;
 	
+	@Autowired
+	private LeagueScraper leagueScraper;
+	
 	
 	public Season[] loadSeasons() throws ScraperException {
 		String page = loader.load(url);
@@ -32,7 +38,9 @@ public class SeasonScraper {
 		for(int i=0; i <= latestSeason-firstSeason; i++) {
 			int seasonStartYear = latestSeason - i;
 			int seasonEndYear = seasonStartYear + 1;
-			Season s = new Season(seasonStartYear, seasonEndYear, latestSeason == seasonStartYear);
+			boolean current = latestSeason == seasonStartYear;
+			League[] leagues = leagueScraper.loadLeagues(current ? 0 : seasonStartYear);
+			Season s = new Season(seasonStartYear, seasonEndYear, current, Arrays.asList(leagues));
 			seasons.add(s);
 		}
 		

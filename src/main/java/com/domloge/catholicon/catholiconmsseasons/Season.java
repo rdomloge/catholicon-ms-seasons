@@ -1,9 +1,16 @@
 package com.domloge.catholicon.catholiconmsseasons;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderColumn;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -23,10 +30,15 @@ public class Season {
 	
 	private int apiIdentifier;
 
-	public Season(int seasonStartYear, int seasonEndYear, boolean current) {
+	@OrderColumn(name = "LEAGUEORDER")
+	@OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
+	private List<League> leagues;
+
+	public Season(int seasonStartYear, int seasonEndYear, boolean current, List<League> leagues) {
 		this.seasonStartYear = seasonStartYear;
 		this.seasonEndYear = seasonEndYear;
 		this.apiIdentifier = current ? 0 : seasonStartYear;
+		this.leagues = leagues;
 	}
 	
 	public Season() {
@@ -64,6 +76,14 @@ public class Season {
 	public void setApiIdentifier(int apiIdentifier) {
 		this.apiIdentifier = apiIdentifier;
 	}
+
+	public void setLeagues(List<League> leagues) {
+		this.leagues = leagues;
+	}
+
+	public List<League> getLeagues() {
+		return leagues;
+	}
 	
 	@Override
 	public String toString() {
@@ -72,7 +92,7 @@ public class Season {
 
 	@Override
 	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this, false);
+		return HashCodeBuilder.reflectionHashCode(this, "id");
 	}
 
 	@Override
