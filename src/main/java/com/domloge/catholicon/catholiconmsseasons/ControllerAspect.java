@@ -31,7 +31,7 @@ public class ControllerAspect {
     	sw.start();
         Object result = joinPoint.proceed();
         sw.stop();
-        LOGGER.debug("Controller finished in {}ms and returning {}", sw.getLastTaskTimeMillis(), result);
+        //LOGGER.debug("Controller finished in {}ms and returning {}", sw.getLastTaskTimeMillis(), result);
         return result;
     }
 }
