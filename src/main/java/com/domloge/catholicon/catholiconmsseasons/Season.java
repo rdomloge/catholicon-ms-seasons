@@ -2,33 +2,18 @@ package com.domloge.catholicon.catholiconmsseasons;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Index;
-import javax.persistence.OneToMany;
-import javax.persistence.OrderColumn;
-import javax.persistence.Table;
-
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
-@Table(indexes = {
-	@Index(columnList = "seasonStartYear"),
-	@Index(columnList = "apiIdentifier")
-})
+@Document
 public class Season {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	private String id;
 
 	private int seasonStartYear;
 	
@@ -36,8 +21,6 @@ public class Season {
 	
 	private int apiIdentifier;
 
-	@OrderColumn(name = "LEAGUEORDER")
-	@OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
 	private List<League> leagues;
 
 	public Season(int seasonStartYear, int seasonEndYear, boolean current, List<League> leagues) {
@@ -51,13 +34,13 @@ public class Season {
 		super();
 	}
 
-	public int getId() {
-		return id;
-	}
+	// public String getId() {
+	// 	return id;
+	// }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+	// public void setId(String id) {
+	// 	this.id = id;
+	// }
 
 	public int getSeasonStartYear() {
 		return seasonStartYear;

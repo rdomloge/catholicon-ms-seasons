@@ -1,20 +1,12 @@
 package com.domloge.catholicon.catholiconmsseasons;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Index;
-import javax.persistence.Table;
-
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.springframework.data.annotation.Id;
 
-@Entity
 public class Division {
 	
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
 	private String leagueTypeId;
