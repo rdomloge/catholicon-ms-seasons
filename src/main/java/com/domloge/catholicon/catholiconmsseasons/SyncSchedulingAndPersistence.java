@@ -29,7 +29,7 @@ public class SyncSchedulingAndPersistence {
 	private SeasonRepository repository;
 	
 	@Autowired
-	private Sync<Season> sync;
+	private Sync<Integer, Season> sync;
 	
 	@Scheduled(cron="0 0 */3 * * *")
 	@PostConstruct

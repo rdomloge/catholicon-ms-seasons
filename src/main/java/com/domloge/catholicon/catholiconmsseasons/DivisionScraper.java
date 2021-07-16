@@ -7,8 +7,6 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,7 +16,7 @@ import com.domloge.catholicon.ms.common.ScraperException;
 @Component
 public class DivisionScraper {
 	
-	private static Logger LOGGER = LoggerFactory.getLogger(DivisionScraper.class);
+	//private static Logger LOGGER = LoggerFactory.getLogger(DivisionScraper.class);
 	
 	public static final String divisionListurl = 
 			"/Leagues.asp?LeagueTypeID=%1$s&CompetitionStyle=0&Season=%2$s&Juniors=false&Schools=false&Website=1";
